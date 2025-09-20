@@ -12,7 +12,7 @@ export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || SITE),
   icons: { icon: "/images/logo.png" },
   title: `${BRAND} | รับจ้างยิงแอดสายเทา ทำโฆษณาออนไลน์ Google & Facebook Ads`,
-  description: `${BRAND} บริการทำโฆษณาออนไลน์แบบมืออาชีพ โฟกัสผลลัพธ์และการวัดผล ครบวงจร (Google Ads, Facebook Ads) วางกลยุทธ์ ตั้งค่าแคมเปญ วิเคราะห์ และปรับเพื่อยอดขาย`,
+  description: `${BRAND} บริการทำโฆษณาออนไลน์แบบมืออาชีพ โฟกัสผลลัพธ์และการวัดผล ครบวงจร (Google Ads, Facebook Ads)`,
   keywords: KEYWORDS,
   alternates: { canonical: process.env.NEXT_PUBLIC_SITE_URL || SITE },
   openGraph: {
@@ -49,32 +49,36 @@ export default function RootLayout({ children }) {
   return (
     <html lang="th">
       <head>
-        {/* JSON-LD: Global Hero Image (ใช้ภาพ DEFAULT_OG สำหรับทุกหน้า) */}
+        {/* JSON-LD: Global Hero Image */}
         <JsonLd json={heroImageLd} />
 
-        {/* Google Tag Manager / Analytics */}
+        {/* Google Analytics */}
         {process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID && (
           <>
+            {/* โหลด GA Script */}
             <Script
               strategy="afterInteractive"
               src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}`}
             />
-            <Script id="google-analytics" strategy="afterInteractive">
+
+            {/* กำหนดค่า GA */}
+            <Script id="ga-script" strategy="afterInteractive">
               {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}');
+                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}', {
+                  page_path: window.location.pathname,
+                });
               `}
             </Script>
           </>
-        )} 
-<meta name="google-adsense-account" content="ca-pub-7060960935275939"/>
+        )}
       </head>
 
       <body>
         <Header />
- 
+
         <main className="container my-4" role="main" aria-label="เนื้อหาหลัก">
           {children}
         </main>
