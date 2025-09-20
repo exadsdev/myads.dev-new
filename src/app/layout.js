@@ -73,7 +73,7 @@ export default function RootLayout({ children }) {
 
       <body>
         <Header />
-
+         <meta name="google-adsense-account" content="ca-pub-7060960935275939">
         <main className="container my-4" role="main" aria-label="เนื้อหาหลัก">
           {children}
         </main>
