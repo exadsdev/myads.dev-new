@@ -171,7 +171,8 @@ export default function HomePage() {
   };
 
   return (
-    <>
+    <> 
+      <meta name="google-adsense-account" content="ca-pub-4157323014440221">
       <nav className="container" aria-label="เมนูหลัก">
         <ul className="nav">
           <li><Link href="/" prefetch>หน้าแรก</Link></li>
