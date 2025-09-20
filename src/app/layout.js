@@ -73,7 +73,8 @@ export default function RootLayout({ children }) {
               `}
             </Script>
           </>
-        )}
+        )} 
+  <meta name="google-adsense-account" content="ca-pub-4157323014440221"/>
       </head>
 
       <body>
